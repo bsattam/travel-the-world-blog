@@ -1,6 +1,6 @@
 {
   "name": "blog-site-api",
-  "version": "1.0.0",
+  "version": "16.13.1",
   "description": "Blog site created as a webdev project",
   "main": "index.js",
   "scripts": {
