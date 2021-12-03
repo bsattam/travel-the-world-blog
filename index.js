@@ -43,6 +43,8 @@ app.use('/api/users', usersRoute);
 app.use('/api/posts', postsRoute); 
 app.use('/api/categories', categoryRoute);
 
+
+// serve static assets if we are in production
 if (process.env.NODE_ENV === 'production'){
     // set static folder
     app.use(express.static('client/build'));
