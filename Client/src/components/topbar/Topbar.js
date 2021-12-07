@@ -31,12 +31,6 @@ export default function Topbar(){
                     <li className = 'top-list-item'> 
                         <Link to='/' className='react-link'> Home </Link> 
                     </li>
-                    <li className = 'top-list-item'>
-                        <Link to='/' className='react-link'> About </Link> 
-                    </li>
-                    <li className = 'top-list-item'>
-                         <Link to='/' className='react-link'> Contact </Link>
-                    </li>
                     <li className = 'top-list-item'> 
                     <Link to='/write' className='react-link'> Write </Link>
                     </li>

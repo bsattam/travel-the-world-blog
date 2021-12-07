@@ -27,8 +27,7 @@
 }
 
 .post-title{
-    font-size: 60px;
-    font-family: 'Tangerine', cursive;
+    font-size: 30px;
     color:#e34234;
     font-weight: 900;
     margin-top: 15px;
@@ -37,7 +36,6 @@
 }
 
 .post-author{
-    margin: 5px;
     color: black;
     font-family: 'roboto', sans-serif;
     font-size: 14px;
@@ -49,7 +47,6 @@
     font-family: 'roboto', sans-serif;
     font-size: 12px;
     font-weight: 400;
-
 }
 
 .post-description{
@@ -63,4 +60,12 @@
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
+}
+
+.react-box{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 300px;
+    margin-top: 10px;
 }

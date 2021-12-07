@@ -22,8 +22,10 @@ export default function Post({post}) {
                 <Link to={`/singlepost/${post._id}`} className="react-link"> 
                     <span className = 'post-title'> {post.title} </span> 
                 </Link>
-                <span className = 'post-author'> {post.username}</span>
-                <span className = 'post-created-at'> {new Date(post.updatedAt).toDateString()}</span>
+                <div className="react-box">
+                    <span className = 'post-author'> {post.username}</span>
+                    <span className = 'post-created-at'> {new Date(post.updatedAt).toDateString()}</span>
+                </div>
                 <p className = 'post-description'> 
                     {post.description}
                 </p>

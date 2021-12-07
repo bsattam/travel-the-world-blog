@@ -24,15 +24,14 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try{
         const user = await User.findOne({ username: req.body.username })
-      
-        !user && res.status(400).send("wrong credentials");
 
         const passValidated = await bcrypt.compare(req.body.password, user.password);
-        
-        !passValidated && res.status(400).send('wrong credentials');
-
+      
+        if (!user || !passValidated)
+            res.status(400).send('wrong credentials');
+    
         const {password, ...userinfo} = user._doc;
-        passValidated && res.status(200).json(userinfo);
+        user && passValidated && res.status(200).json(userinfo);
     }
     catch(err){
         console.log('error occured');

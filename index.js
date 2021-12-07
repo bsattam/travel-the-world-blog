@@ -8,6 +8,7 @@ const postsRoute = require('./routes/posts');
 const categoryRoute = require('./routes/categories');
 const multer = require('multer');
 const path = require('path'); 
+const fs = require('fs');
 
 dotenv.config();
 app.use(express.json());
@@ -36,6 +37,17 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 app.post("/api/upload", upload.single("file"), (req, res)=> {
     res.status(200).json("file has been uploaded");
+})
+app.post("/api/deleteOldImage", async (req, res)=> {
+    try{
+        const img = req.body.oldImage;
+        if (img)
+            fs.unlinkSync(path.join(__dirname, "/images/") + img);
+        res.status(200).json(req.body);
+    }catch(err){
+        console.log(err);
+    }
+    
 })
 
 app.use('/api/auth', authRoute); 

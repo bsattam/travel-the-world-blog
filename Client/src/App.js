@@ -32,13 +32,13 @@ function App() {
             {user? <Home/> : <Login/>}
           </Route>
           <Route path="/write">
-            {user ? <Write/> : <Register/>}
+            {user ? <Write/> : <Login/>}
           </Route>
           <Route path="/userinfo">
-            <UserInfo/>
+            {user ? <UserInfo/> : <Login/>}
           </Route>
           <Route path="/singlepost">
-            <SinglePost/>
+            {user ? <SinglePost/> : <Login/>}
           </Route>
           
         </Switch>
