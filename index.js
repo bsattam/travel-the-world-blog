@@ -48,11 +48,8 @@ const upload = multer({dest: 'images/'});
 
 app.post('/api/upload', upload.single('file'), async (req, res)=>{
     const file = req.file;
-    console.log(file);
     const result = await uploadFile(file);
-    console.log(result);
-    const key = 
-    res.send('uploaded successfully');
+    res.send(result);
 })
 
 app.get('/api/image/:key', (req, res) => {

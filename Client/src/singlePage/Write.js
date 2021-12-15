@@ -43,15 +43,16 @@ export default function Write() {
             const filename = Date.now() + file.name;
             data.append("name", filename);
             data.append("file", file);
-            newPost.photo = filename;
 
             try{
                 const res = await axios.post('/upload', data);
+                console.log(res);
+                newPost.photo = res.data.Key;
             }catch(err){
                 console.log("error1: " + err);
             }
             try{
-                console.log(newPost);
+                console.log(newPost); 
                 const res = await axios.post('/posts', newPost);
                 window.location.replace('/singlepost/' + res.data._id);
             }catch(err){

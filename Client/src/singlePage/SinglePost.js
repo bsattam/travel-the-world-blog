@@ -10,12 +10,12 @@ const path = require('path');
 
 
 export default function SinglePost() {
-    const PF = 'http://localhost:5050/images/';
     const location = useLocation();
     const path =(location.pathname.split('/')[2]);
     const [post, setPost] = useState({});
     const {user} = useContext(Context);
     const [title, setTitle] = useState("");
+    const [imageKey, setImageKey] = useState("");
     const [description, setDescription] = useState("");
     const [updateMode, setUpdateMode] = useState(false);
     const [updatefail, setUpdatefail] = useState(false);
@@ -23,9 +23,11 @@ export default function SinglePost() {
     useEffect(() => {
         const getPost = async () => {
             const res = await axios.get('/posts/'+path);
+            console.log(res);
             setPost(res.data);
             setTitle(res.data.title);
             setDescription(res.data.description);
+            setImageKey("/image/" + res.data.photo);
         };
         getPost();
     }, [path])
@@ -55,6 +57,8 @@ export default function SinglePost() {
         }
     }
 
+    console.log(imageKey);
+
     return (
 
         <div className = 'single-post'>
@@ -62,8 +66,9 @@ export default function SinglePost() {
                 {post.photo && 
                     <img
                     className = 'single-post-img'
-                    src={PF + post.photo}
+                    src = {imageKey} 
                     alt = '...'
+                    width = "500"
                 />
                 }
                 
