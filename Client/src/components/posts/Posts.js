@@ -7,6 +7,7 @@ export default function Posts({posts}) {
             {posts.map( (p)=> (
                 <Post key={Math.random()} post={p}/>
             ))}
+            
         </div>
     )
 }

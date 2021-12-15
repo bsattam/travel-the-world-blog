@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
     const [cats, setCats] = useState([]);
-
+    
     useEffect(() => {
         const getCats = async() => {
             const res = await axios.get('/categories');
@@ -32,6 +32,7 @@ export default function Sidebar() {
                         </Link>
                     ))}
                 </ul>
+               
             </div>
         </div>
     )

@@ -9,6 +9,7 @@ const categoryRoute = require('./routes/categories');
 const multer = require('multer');
 const path = require('path'); 
 const fs = require('fs');
+const { uploadFile, getFileStream } = require('./s3.js');
 
 dotenv.config();
 app.use(express.json());
@@ -24,6 +25,7 @@ mongoose.connect(
     }
 ).then(console.log('connected to mongodb atlas')).catch(err => console.log(err));
 
+/*
 const storage = multer.diskStorage({
     destination: (req, file, callback) =>{          // callback handles the errors
         callback(null, "images")
@@ -34,10 +36,34 @@ const storage = multer.diskStorage({
     }
 })
 
+console.log(storage);
+/*
 const upload = multer({storage: storage});
 app.post("/api/upload", upload.single("file"), (req, res)=> {
     res.status(200).json("file has been uploaded");
 })
+*/
+
+const upload = multer({dest: 'images/'});
+
+app.post('/api/upload', upload.single('file'), async (req, res)=>{
+    const file = req.file;
+    console.log(file);
+    const result = await uploadFile(file);
+    console.log(result);
+    const key = 
+    res.send('uploaded successfully');
+})
+
+app.get('/api/image/:key', (req, res) => {
+    const key = req.params.key;
+    const readStream = getFileStream(key);
+    console.log(readStream);
+
+    readStream.pipe(res);
+})
+
+
 app.post("/api/deleteOldImage", async (req, res)=> {
     try{
         const img = req.body.oldImage;
