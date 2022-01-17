@@ -5,17 +5,24 @@ import {Context} from '../../context/Context';
 
 export default function Topbar(){
     const PF = "http://localhost:5050/images/";
+    const S3PF = "/image/"
     const {user, dispatch} = useContext(Context);
-    //const [dp, setDp] = useState("");
+    const [imageKey, setImageKey] = useState("");
     const handleLogout = () => {
         dispatch({type: "LOGOUT"});
     }
     console.log(user);
     
 
-    if(user){
-        var dp = user.profilePic ? PF+user.profilePic : PF+'user.png';
-    }
+    useEffect(()=>{
+        if(user){
+            console.log("topbar profile pic updated");
+            var dp = user.profilePic ? S3PF+user.profilePic : PF+'user.png';
+            console.log("dp = " + dp);
+            setImageKey(dp);
+        }
+        
+    }, [])
     
 
     
@@ -41,7 +48,7 @@ export default function Topbar(){
                     <Link to='/userinfo'>
                         <img 
                         className = 'topbar-img'
-                        src = {dp}
+                        src = {imageKey}
                         alt = '...'
                         />
                     </Link>

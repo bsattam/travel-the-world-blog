@@ -20,6 +20,8 @@ export default function SinglePost() {
     const [updateMode, setUpdateMode] = useState(false);
     const [updatefail, setUpdatefail] = useState(false);
 
+    console.log(imageKey);
+
     useEffect(() => {
         const getPost = async () => {
             const res = await axios.get('/posts/'+path);
@@ -56,8 +58,6 @@ export default function SinglePost() {
             setUpdatefail(true);
         }
     }
-
-    console.log(imageKey);
 
     return (
 

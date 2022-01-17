@@ -2,10 +2,13 @@ import './userInfo.css'
 import {Context} from '../context/Context';
 import {useState, useContext, useEffect} from 'react';
 import axios from 'axios';
+import imageCompression from 'browser-image-compression';
 
 
 export default function UserInfo() {
-    const PF = 'http://localhost:5050/images/';
+    const [imageKey, setImageKey] = useState("");
+    const PF = "http://localhost:5050/images/"
+    const S3PF = "/image/"
     const {user, dispatch} = useContext(Context);
     const [file, setFile] = useState(null);
     const [username, setUsername] = useState("");
@@ -13,15 +16,19 @@ export default function UserInfo() {
     const [password, setPassword] = useState("");
     const [success, setSuccess] = useState(false);
     const [userinfo, setUserinfo] = useState(user); 
-    if (user){
-        var dp = user.profilePic ? PF+user.profilePic : PF+'user.png';
-    }
+    useEffect(()=>{
+        if (user){
+            var dp = user.profilePic ? S3PF+user.profilePic : PF+'user.png';
+            setImageKey(dp);
+        }
+    }, [])
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch({type: 'UPDATE_START'});
         const oldImage = user.profilePic;
-        console.log(oldImage);
+        console.log('old image is: ', oldImage);
         const updatedUser = {
             userId: user._id,
             username,
@@ -32,30 +39,38 @@ export default function UserInfo() {
         if (updatedUser.email === "") updatedUser.email = user.email;
         if (updatedUser.password === "") updatedUser.password = user.password;
         if (file){
+            const compressedFile = await imageCompression(file, {maxSizeMB: 0.2});
             const data = new FormData();
             const filename = Date.now() + file.name;
             data.append("name", filename);
-            data.append("file", file);
-            updatedUser.profilePic = filename;
+            data.append("file", compressedFile);
+            
 
             try{
                 const res = await axios.post('/upload', data);
+                updatedUser.profilePic = res.data.key;
+                console.log("New profile pic: " + updatedUser.profilePic);
             }catch(err){
                 console.log("error1: " + err);
             }
-            try{
-                const res = await axios.post('/deleteOldImage', {oldImage});
-            }catch(err){
-                console.log(err);
-            }
+            // try{
+            //     const res = await axios.post('/deleteOldImage', {oldImage});
+            // }catch(err){
+            //     console.log(err);
+            // }
             try{
                 const res = await axios.put('/users/' + user._id, updatedUser);
-                console.log(res);
+                console.log("Updated user: ", res);
                 setSuccess(true);
                 console.log('success set');
                 dispatch({type: 'UPDATE_SUCCESS', payload: res.data});
                 console.log('dispatched');
+
+                //const res2 = await axios.delete('/image/' + oldImage);
+                //console.log('old image deleted');
+
                 window.location.replace('/');
+
             }catch(err){
                 console.log("error2: " + err);
                 dispatch({type: 'UPDATE_FAILURE'});
@@ -78,7 +93,7 @@ export default function UserInfo() {
                         <label>Profile picture</label>
                         <div className = 'user-profile-img'>
                             <img
-                                src = {file ? URL.createObjectURL(file) : dp}
+                                src = {file ? URL.createObjectURL(file) : imageKey}
                                 alt = ''
                             />
                             <label htmlFor = "fileInput">

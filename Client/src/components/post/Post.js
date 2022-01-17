@@ -1,13 +1,20 @@
 import './post.css';
 import {Link} from 'react-router-dom'
-const path = require('path');
+import { useState, useEffect } from 'react';
 
 export default function Post({post}) {
-    const PF = 'http://localhost:5050/images/';
+    console.log(post);
+    const PF = '/image/';
+    const [imageKey, setImageKey] = useState("");
+
+    useEffect(()=>{
+        setImageKey(PF + post.photo);
+    }, [])
+    
     return (
         <div className = 'post'>
             {post.photo && (
-                    <img className='post-img' src={PF + post.photo} alt='...'/>
+                    <img className='post-img' src={imageKey} alt='...'/>
                 )}
             
             <div className = 'post-info'> 

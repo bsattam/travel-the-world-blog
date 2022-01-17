@@ -41,3 +41,20 @@ const getFileStream = (fileKey) => {
 }
 
 exports.getFileStream = getFileStream;
+
+
+// delete image from s3
+
+const deleteFile = (fileKey) => {
+    const deleteParams = {
+        Key: fileKey,
+        Bucket: bucketName
+    }
+
+    s3.deleteObject(deleteParams, (err, data)=>{
+        if (err) console.log(err);
+        else console.log("successfully deleted");
+    })
+}
+
+exports.deleteFile = deleteFile;

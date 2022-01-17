@@ -2,6 +2,7 @@ import './write.css';
 import {useState, useContext, useEffect} from 'react';
 import axios from 'axios';
 import {Context} from '../context/Context';
+import imageCompression from 'browser-image-compression';
 
 export default function Write() {
     const [title, setTitle] = useState("");
@@ -39,10 +40,11 @@ export default function Write() {
             description,
         };
         if (file){
+            const compressedFile = await imageCompression(file, {maxSizeMB: 0.5});    // handled image compression
             const data = new FormData();
             const filename = Date.now() + file.name;
             data.append("name", filename);
-            data.append("file", file);
+            data.append("file", compressedFile);
 
             try{
                 const res = await axios.post('/upload', data);

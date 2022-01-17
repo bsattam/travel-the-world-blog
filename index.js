@@ -9,7 +9,7 @@ const categoryRoute = require('./routes/categories');
 const multer = require('multer');
 const path = require('path'); 
 const fs = require('fs');
-const { uploadFile, getFileStream } = require('./s3.js');
+const { uploadFile, getFileStream, deleteFile } = require('./s3.js');
 
 dotenv.config();
 app.use(express.json());
@@ -60,18 +60,26 @@ app.get('/api/image/:key', (req, res) => {
     readStream.pipe(res);
 })
 
-
-app.post("/api/deleteOldImage", async (req, res)=> {
-    try{
-        const img = req.body.oldImage;
-        if (img)
-            fs.unlinkSync(path.join(__dirname, "/images/") + img);
-        res.status(200).json(req.body);
-    }catch(err){
-        console.log(err);
-    }
-    
+app.delete('/api/image/:key', (req, res)=>{
+    console.log('Delete request arrived');
+    const key = req.params.key;
+    console.log(key);
+    deleteFile(key);
+    res.send("File deleted");
 })
+
+
+// app.post("/api/deleteOldImage", async (req, res)=> {
+//     try{
+//         const img = req.body.oldImage;
+//         if (img)
+//             fs.unlinkSync(path.join(__dirname, "/images/") + img);
+//         res.status(200).json(req.body);
+//     }catch(err){
+//         console.log(err);
+//     }
+    
+// })
 
 app.use('/api/auth', authRoute); 
 app.use('/api/users', usersRoute); 

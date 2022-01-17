@@ -19,6 +19,7 @@ export default function Home (){
         fetchPosts();
     }, [search])          // this [] denotes that this hook will be called once the component is rendered.
 
+    // console.log(posts);
 
     return (
         <div className='home-wrapper'>
