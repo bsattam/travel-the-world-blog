@@ -5,7 +5,7 @@ import {Context} from '../../context/Context';
 
 export default function Topbar(){
     const PF = "http://localhost:5050/images/";
-    const S3PF = "/image/"
+    const S3PF = "https://bsattam-travel-the-world-blog.s3.ap-south-1.amazonaws.com/"
     const {user, dispatch} = useContext(Context);
     const [imageKey, setImageKey] = useState("");
     const handleLogout = () => {

@@ -8,7 +8,7 @@ import imageCompression from 'browser-image-compression';
 export default function UserInfo() {
     const [imageKey, setImageKey] = useState("");
     const PF = "http://localhost:5050/images/"
-    const S3PF = "/image/"
+    const S3PF = "https://bsattam-travel-the-world-blog.s3.ap-south-1.amazonaws.com/"
     const {user, dispatch} = useContext(Context);
     const [file, setFile] = useState(null);
     const [username, setUsername] = useState("");

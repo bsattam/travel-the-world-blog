@@ -47,6 +47,7 @@ export default function Write() {
             data.append("file", compressedFile);
 
             try{
+                console.log(data);
                 const res = await axios.post('/upload', data);
                 console.log(res);
                 newPost.photo = res.data.Key;

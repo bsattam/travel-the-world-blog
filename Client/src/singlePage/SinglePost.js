@@ -29,10 +29,11 @@ export default function SinglePost() {
             setPost(res.data);
             setTitle(res.data.title);
             setDescription(res.data.description);
-            setImageKey("/image/" + res.data.photo);
+            console.log("Image key set");
+            setImageKey("https://bsattam-travel-the-world-blog.s3.ap-south-1.amazonaws.com/" + res.data.photo);
         };
         getPost();
-    }, [path])
+    }, [path, imageKey])
 
     const handleDelete = async () => {
         try{

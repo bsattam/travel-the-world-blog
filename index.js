@@ -25,7 +25,7 @@ mongoose.connect(
     }
 ).then(console.log('connected to mongodb atlas')).catch(err => console.log(err));
 
-/*
+
 const storage = multer.diskStorage({
     destination: (req, file, callback) =>{          // callback handles the errors
         callback(null, "images")
@@ -37,14 +37,14 @@ const storage = multer.diskStorage({
 })
 
 console.log(storage);
-/*
-const upload = multer({storage: storage});
-app.post("/api/upload", upload.single("file"), (req, res)=> {
-    res.status(200).json("file has been uploaded");
-})
-*/
 
-const upload = multer({dest: 'images/'});
+const upload = multer({storage: storage});
+// app.post("/api/upload", upload.single("file"), (req, res)=> {
+//     res.status(200).json("file has been uploaded");
+// })
+
+
+//const upload = multer({dest: 'images/'});
 
 app.post('/api/upload', upload.single('file'), async (req, res)=>{
     const file = req.file;
