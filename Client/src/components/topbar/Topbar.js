@@ -30,7 +30,8 @@ export default function Topbar(){
         <div className = 'top'>
             <div className = "top-left"> 
                 <Link to='/' className='react-link'> 
-                    <img className = 'topbar-icon' src={PF + 'web-icon.jpg'} alt='...' />
+                    {/* <img className = 'topbar-icon' src={PF + 'icon.png'} alt='...' /> */}
+                    <div className = 'topbar-icon'>Travel The World</div>
                 </Link>
             </div>
             <div className = "top-center">
