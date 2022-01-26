@@ -90,11 +90,12 @@ export default function Write() {
                 </div>
 
                 <div className='write-categories-container'>
-                    <input className = 'write-input' type='text' placeholder='Enter Title' id = 'TextInput' autoFocus = {true}/>
+                    <input className = 'write-input' type='text' placeholder='Enter Title'
+                     id = 'TextInput' autoFocus = {true} onChange={(e) => setTitle(e.target.value)}/>
                     <div>
                         <div className='write-categories-all-selected' key={catlist}>
                             {catlist.map((c,i) => (
-                                <span className='write-category' key={Math.random()}>{c}</span>
+                                <div className='write-category' key={Math.random()}>{c}</div>
                             ))}
                         </div>
                         <select name="catlist" id="catlist" className='dropdown-categories-all' onChange={handleAddCategory}>
@@ -108,7 +109,7 @@ export default function Write() {
                     </div>
                     <textarea placeholder='tell your story...' type='text' className='write-story write-input'
                     onChange={e=>setDescription(e.target.value)}></textarea>
-                    <button className = 'write-submit'>Publish</button>
+                    <button className = 'write-submit' type='submit'>Publish</button>
                 </div>
                 
             </form>

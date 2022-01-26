@@ -25,6 +25,7 @@
     font-weight: 900;
     margin-top: 15px;
     cursor: pointer;
+    text-transform: capitalize;
 }
 
 .post-author{
@@ -41,10 +42,10 @@
     font-weight: 400;
 }
 
-.react-box{
+.post-short-description{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 300px;
-    margin: 10px 0;
+    margin: 15px 0;
 }

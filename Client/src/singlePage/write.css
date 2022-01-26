@@ -59,16 +59,22 @@
     flex-direction: column;
     margin: 0 70px 0 170px;
 }
+
 .write-categories-all-selected{
-    width: 50%;
+    min-height: 50px;
     margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 .write-category{
     font-size: 18px;
     padding: 0 3px 0 3px;
     border: 1px solid gray;
     margin: 2px 3px 3px 2px;
+    border-radius: 10px;
 }
+
 .dropdown-categories-all{
     border: 2px solid gray;
     border-radius: 3px;
@@ -77,18 +83,24 @@
     height: 30px;
     font-family: 'Sora', sans-serif;
 }
+
 .dropdown-categories-all:focus{
     outline: none;
 }
+
 .category-delete-icon{
     margin-left: 10px;
     color: darkgrey;
+    position: relative;
+    top: 5px;
+    cursor: pointer;
 }
 
 
 .write-story{
     font-size: 20px !important;
     height: 200px;
+    width: 40vw;
 }
 
 .write-submit{
