@@ -36,6 +36,7 @@
     font-size: 85px;
     color: #e34234;
     border-bottom: 2px solid #e34234;
+    text-transform: capitalize;
 }
 
 .single-post-author{
