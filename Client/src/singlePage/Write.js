@@ -66,47 +66,51 @@ export default function Write() {
     } 
     return (
         <div className = 'write'>
-            {
-                file && (
-                    <img
-                    className = 'write-img'
-                    src = {URL.createObjectURL(file)}
-                    alt = ''
-                />)
-            }
-            
+            <div className='write-title'>Write New Blog</div>
             <form className = 'write-form' onSubmit={handleSubmit}>
+               
                 <div className = 'write-form-group'> 
+
                     <label htmlFor='fileInput'>
                         <i className="write-icon far fa-plus-square fa-2x"></i>
                     </label>
                     <input type = 'file' id = 'fileInput' style={{display: 'none'}} 
                     onChange={e=>setFile(e.target.files[0])}></input>
-                    <input className = 'write-input' type='text' placeholder='title' id = 'TextInput' autoFocus = {true}
-                    onChange={e=>setTitle(e.target.value)}></input>
+
+
+                    {
+                        file && (
+                            <img
+                            className = 'write-img'
+                            src = {URL.createObjectURL(file)}
+                            alt = ''
+                        />)
+                    }
+                    
                 </div>
 
                 <div className='write-categories-container'>
-                    <div className='write-categories-all-selected' key={catlist}>
-                        {catlist.map((c,i) => (
-                            <span className='write-category' key={Math.random()}>{c}</span>
-                        ))}
+                    <input className = 'write-input' type='text' placeholder='Enter Title' id = 'TextInput' autoFocus = {true}/>
+                    <div>
+                        <div className='write-categories-all-selected' key={catlist}>
+                            {catlist.map((c,i) => (
+                                <span className='write-category' key={Math.random()}>{c}</span>
+                            ))}
+                        </div>
+                        <select name="catlist" id="catlist" className='dropdown-categories-all' onChange={handleAddCategory}>
+                            <option value=''>Select Categories</option>
+                            {categories.map((c,i)=> (
+                                <option value={c} key={Math.random()}>{c}</option>
+                            ))}
+                        </select>
+                        
+                        <i className="far fa-trash-alt fa-2x category-delete-icon" onClick={handleRemoveCategory}></i>
                     </div>
-                    <select name="catlist" id="catlist" className='dropdown-categories-all' onChange={handleAddCategory}>
-                        <option value=''>Select Categories</option>
-                        {categories.map((c,i)=> (
-                            <option value={c} key={Math.random()}>{c}</option>
-                        ))}
-                    </select>
-                    
-                    <i className="far fa-trash-alt fa-2x category-delete-icon" onClick={handleRemoveCategory}></i>
-                </div>
-                
-                <div className = 'write-form-group'> 
                     <textarea placeholder='tell your story...' type='text' className='write-story write-input'
                     onChange={e=>setDescription(e.target.value)}></textarea>
+                    <button className = 'write-submit'>Publish</button>
                 </div>
-                <button className = 'write-submit'>Publish</button>
+                
             </form>
         </div>
     )

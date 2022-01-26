@@ -15,31 +15,33 @@ export default function Post({post}) {
     
     return (
         <div className = 'post'>
-            {post.photo && (
-                    //<img className='post-img' src={imageKey} alt='...'/>
-                    <img className='post-img' src={imageKey} alt='...'/>
-                )}
-            
-            <div className = 'post-info'> 
-                <div className = 'post-cats'>
-                    {post.categories.map((c,i) => (
-                        <Link to={`/?cat=${c}`} className = 'react-link'>
-                            <span className = 'post-cat-item' key={i}> {c + ','} </span>
-                        </Link>
-                        
-                    ))}
+            <Link to={`/singlepost/${post._id}`} className="react-link"> 
+                {post.photo && (
+                        //<img className='post-img' src={imageKey} alt='...'/>
+                        <img className='post-img' src={imageKey} alt='...'/>
+                    )}
+                
+                <div className = 'post-info'> 
+                    {/* <div className = 'post-cats'>
+                        {post.categories.map((c,i) => (
+                            <Link to={`/?cat=${c}`} className = 'react-link'>
+                                <span className = 'post-cat-item' key={i}> {c + ','} </span>
+                            </Link>
+                            
+                        ))}
+                    </div> */}
+                    
+                        <span className = 'post-title'> {post.title} </span> 
+                    
+                    <div className="react-box">
+                        <span className = 'post-author'> Author: {post.username}</span>
+                        <span className = 'post-created-at'> Date: {new Date(post.updatedAt).toDateString()}</span>
+                    </div>
+                    {/* <p className = 'post-description'> 
+                        {post.description}
+                    </p> */}
                 </div>
-                <Link to={`/singlepost/${post._id}`} className="react-link"> 
-                    <span className = 'post-title'> {post.title} </span> 
-                </Link>
-                <div className="react-box">
-                    <span className = 'post-author'> {post.username}</span>
-                    <span className = 'post-created-at'> {new Date(post.updatedAt).toDateString()}</span>
-                </div>
-                <p className = 'post-description'> 
-                    {post.description}
-                </p>
-            </div>
+            </Link>
         </div>
     )
 }

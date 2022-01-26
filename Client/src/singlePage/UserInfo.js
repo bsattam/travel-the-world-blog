@@ -90,8 +90,9 @@ export default function UserInfo() {
                 <form className = 'user-info-form' onSubmit={handleSubmit}>
                     {userinfo && 
                     (<>
-                        <label>Profile picture</label>
+                        
                         <div className = 'user-profile-img'>
+                            <label>Profile picture</label>
                             <img
                                 src = {file ? URL.createObjectURL(file) : imageKey}
                                 alt = ''
@@ -101,13 +102,15 @@ export default function UserInfo() {
                             </label>
                             <input type='file' id='fileInput' style={{display: 'none'}} onChange={(e) => setFile(e.target.files[0])}></input>
                         </div>
-                        <label>Username</label>
-                        <input type='text' placeholder={userinfo.username} onChange = {(e) => setUsername(e.target.value)}></input>
-                        <label>Email</label>
-                        <input type='email' placeholder={userinfo.email} onChange = {(e) => setEmail(e.target.value)}></input>
-                        <label>Password</label>
-                        <input type='password' placeholder='********' onChange = {(e) => setPassword(e.target.value)}></input>
-                        <button className = 'user-profile-update' type='submit'>Update</button>
+                        <div className='user-description'>
+                            <label>Username</label>
+                            <input type='text' placeholder={userinfo.username} onChange = {(e) => setUsername(e.target.value)}></input>
+                            <label>Email</label>
+                            <input type='email' placeholder={userinfo.email} onChange = {(e) => setEmail(e.target.value)}></input>
+                            <label>Password</label>
+                            <input type='password' placeholder='********' onChange = {(e) => setPassword(e.target.value)}></input>
+                            <button className = 'user-profile-update' type='submit'>Update</button>
+                        </div>
 
                     </>)}
                     {success && <span>Profile has been updated</span>}
