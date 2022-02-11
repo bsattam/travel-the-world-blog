@@ -18,8 +18,6 @@ Landing Page           |  Uploading New Blog
 Reading A Blog             |  List of All Blogs
 ![](https://github.com/bsattam/travel-the-world-blog/blob/main/Blog%20app%20images/blog-3.png)  |  ![](https://github.com/bsattam/travel-the-world-blog/blob/main/Blog%20app%20images/blog-4.png)
 
-[Link to the updated duplicate snippet](http://travel-the-world-app.herokuapp.com/login)
-
 ## Environment Variables
 To run this project, you will need to add the following environment variables to your .env file
 
