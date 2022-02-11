@@ -34,7 +34,7 @@ Install dependencies
 npm install
 npm install -D
 ```
-Start the server ( PORT: 4000 )
+Start the server ( PORT: 5050 )
 
 ```
   npm start
