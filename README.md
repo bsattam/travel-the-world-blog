@@ -20,8 +20,6 @@ Reading A Blog             |  List of All Blogs
 
 ## Environment Variables
 To run this project, you will need to add the following environment variables to your .env file
-
-#### SERVER
 - DATABASE
 - DATABASE_PASSWORD
 - AWS_BUCKET_NAME
