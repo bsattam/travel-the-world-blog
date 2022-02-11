@@ -22,7 +22,12 @@ Reading A Blog             |  List of All Blogs
 To run this project, you will need to add the following environment variables to your .env file
 
 #### SERVER
-- `PORT` - 5050 (Port on which the server runs)
+- DATABASE
+- DATABASE_PASSWORD
+- AWS_BUCKET_NAME
+- AWS_BUCKET_REGION
+- AWS_ACCESS_KEY
+- AWS_SECRET_KEY
 
 ## Local Development
 Clone the project
